@@ -1,7 +1,10 @@
 FROM ghcr.io/nestybox/ubuntu-jammy-systemd:latest 
 
-# Install Sshd
-RUN apt-get update && apt-get install --no-install-recommends -y openssh-server \
+# Install Sshd and git
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+    openssh-server \
+    git \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /home/admin/.ssh \
     && chown admin:admin /home/admin/.ssh
