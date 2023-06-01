@@ -1,0 +1,50 @@
+services:
+  node1:
+    build: server/
+    image: server
+    container_name: node1
+    hostname: node1
+    runtime: sysbox-runc
+    ports:
+      - "2201:22"
+    networks:
+      - ansible-lab
+
+  node2:
+    image: server
+    container_name: node2
+    hostname: node2
+    runtime: sysbox-runc
+    ports:
+      - "2202:22"
+    networks:
+      - ansible-lab
+    depends_on:
+      - node1
+
+  node3:
+    image: server
+    container_name: node3
+    hostname: node3
+    runtime: sysbox-runc
+    ports:
+      - "2203:22"
+    networks:
+      - ansible-lab
+    depends_on:
+      - node1
+
+  workstation:
+    build: workstation/
+    image: workstation
+    container_name: workstation
+    hostname: workstation
+    runtime: sysbox-runc
+    ports:
+      - "2200:22"
+    networks:
+      - ansible-lab
+
+networks:
+  ansible-lab:
+    name: ansible-lab
