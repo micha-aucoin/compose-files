@@ -1,12 +1,12 @@
 FROM ghcr.io/nestybox/ubuntu-jammy-systemd:latest 
 
 # Installs
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y -qq \
+RUN apt-get update -y \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -qq \
     openssh-server \
     bash-completion \
     git \
-    ansible --quiet \
+    ansible \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /home/admin/.ssh \
     && chown admin:admin /home/admin/.ssh
@@ -20,7 +20,3 @@ EXPOSE 22
 
 # Set systemd as entrypoint.
 ENTRYPOINT [ "/sbin/init", "--log-level=err" ]
-
-
-
-
