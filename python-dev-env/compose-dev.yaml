@@ -1,0 +1,10 @@
+services:
+  python-container-template:
+    build:
+      context: .
+      target: dev-env
+    image: python-container-template
+    container_name: python-container-template
+    command: tail -f /dev/null
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

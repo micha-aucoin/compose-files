@@ -12,9 +12,9 @@ RUN apt-get update -y \
     && chown admin:admin /home/admin/.ssh
 
 # setup ssh connections
-COPY ssh-conn.sh home/admin/ssh-conn.sh
-RUN chmod +x home/admin/ssh-conn.sh \
-    && chown admin:admin home/admin/ssh-conn.sh
+COPY ssh-conn.sh home/admin/.ssh-conn.sh
+RUN chmod +x home/admin/.ssh-conn.sh \
+    && chown admin:admin home/admin/.ssh-conn.sh
 
 EXPOSE 22
 
