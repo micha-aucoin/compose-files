@@ -17,3 +17,7 @@ ssh-keygen -t ed25519 -f /home/admin/.ssh/ansible -C "ansible"
 ssh-copy-id -i /home/admin/.ssh/ansible.pub admin@node1
 ssh-copy-id -i /home/admin/.ssh/ansible.pub admin@node2
 ssh-copy-id -i /home/admin/.ssh/ansible.pub admin@node3
+
+echo "adding identity to the session"
+eval $(ssh-agent)
+ssh-add ~/.ssh/workstation
