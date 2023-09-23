@@ -32,7 +32,7 @@ services:
       - "2202:22"
     networks:
       - ansible-lab
-    depends_on:
+    depends_on:    # incase server image isn't built yet
       - node1
 
   node3:
@@ -44,8 +44,33 @@ services:
       - "2203:22"
     networks:
       - ansible-lab
-    depends_on:
+    depends_on:    # incase server image isn't built yet
       - node1
+
+  node4:
+    image: server
+    container_name: node4
+    hostname: node4
+    runtime: sysbox-runc
+    ports:
+      - "2204:22"
+    networks:
+      - ansible-lab
+    depends_on:    # incase server image isn't built yet
+      - node1
+
+  node5:
+    image: server
+    container_name: node5
+    hostname: node5
+    runtime: sysbox-runc
+    ports:
+      - "2205:22"
+    networks:
+      - ansible-lab
+    depends_on:    # incase server image isn't built yet
+      - node1
+
 
 networks:
   ansible-lab:

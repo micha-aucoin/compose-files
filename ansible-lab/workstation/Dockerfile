@@ -16,6 +16,10 @@ COPY ssh-conn.sh home/admin/.ssh-conn.sh
 RUN chmod +x home/admin/.ssh-conn.sh \
     && chown admin:admin home/admin/.ssh-conn.sh
 
+RUN touch /home/admin/.bash_aliases \
+    && chown admin:admin /home/admin/.bash_aliases \
+    && echo "alias ssha='eval \$(ssh-agent) && ssh-add ~/.ssh/sysbox_workstation'" >> /home/admin/.bash_aliases 
+
 EXPOSE 22
 
 # Set systemd as entrypoint.
